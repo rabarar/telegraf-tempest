@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	kitlog "github.com/go-kit/kit/log"
-	"github.com/go-kit/kit/log/level"
-	line_metric_encoder "github.com/wz2b/telegraf-execd-toolkit/line-metric-encoder"
-	tlogger "github.com/wz2b/telegraf-execd-toolkit/telegraf-logger"
 	"io"
 	"net"
 	"os"
 	"time"
+
+	kitlog "github.com/go-kit/kit/log"
+	"github.com/go-kit/kit/log/level"
+	line_metric_encoder "github.com/wz2b/telegraf-execd-toolkit/line-metric-encoder"
+	tlogger "github.com/wz2b/telegraf-execd-toolkit/telegraf-logger"
 )
 
 var config TempestAgentConfig
@@ -20,6 +21,8 @@ const DAYS = 24 * time.Hour
 var klog kitlog.Logger
 
 func main() {
+
+	fmt.Println("starting...")
 	logFactory, err := tlogger.NewTelegrafLoggerConfiguration(true)
 
 	if err != nil {

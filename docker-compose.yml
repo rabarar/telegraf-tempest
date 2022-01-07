@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: dev
+    volumes:
+      - .:/opt/app/api
+    depends_on:
+      - telegraf
+
+  telegraf:
+    image: telegraf:latest
+    network_mode: "bridge"
+    pid: "host"
+    container_name: telegraf
+    ports:
+      - "8092:8092"
+      - "8094:8094"
+      - "8125:8125"
+    volumes:
+      - .:/opt/app/api:ro
+      - /Users/robert/docker/tempest/telegraf-tempest/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - HOST_PROC=/proc
+      - HOST_SYS=/sys
+      - HOST_ETC=/etc
+    restart: always
+
+
