@@ -6,9 +6,10 @@ bin/*
 *.dll
 *.so
 *.dylib
-
+telegraf-tempest
 go.mod
 go.sum
+tmp
 
 # Test binary, built with `go test -c`
 *.test
