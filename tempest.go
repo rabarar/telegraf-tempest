@@ -22,7 +22,6 @@ var klog kitlog.Logger
 
 func main() {
 
-	fmt.Println("starting...")
 	logFactory, err := tlogger.NewTelegrafLoggerConfiguration(true)
 
 	if err != nil {
